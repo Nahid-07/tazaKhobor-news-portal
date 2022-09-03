@@ -1,0 +1,6 @@
+@media (max-width : 572px) {
+    #menu-container{
+        flex-direction: column;
+        background-color: #f8f9fa;
+    }
+}

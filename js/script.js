@@ -1,3 +1,4 @@
+// api called for display menu
 const loadDataOnmenu = async () => {
     try {
         const response = await fetch(`https://openapi.programming-hero.com/api/news/categories`)
@@ -7,6 +8,7 @@ const loadDataOnmenu = async () => {
         console.log(error)
     }
 }
+// display menu 
 const displayMenu = (cate) => {
     // console.log(cate);
     const ul = document.getElementById('menu-container');
@@ -18,27 +20,28 @@ const displayMenu = (cate) => {
     })
 }
 loadDataOnmenu()
-
+// call api for showing by id
 const showALLNews = (category_id) => {
     loading(true)
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
     fetch(url)
         .then(res => res.json())
         .then(data => displayAllNews(data.data))
+        .catch(error => console.log(error))
 }
+// display news on the ui
 const displayAllNews = (news) => {
     // news sorting
     news.sort((a,b)=> b.total_view - a.total_view)
     // data found
     const foundData = document.getElementById('found-data');
-    foundData.innerText =`${news.length} news found`;
+    foundData.innerText =`${news.length} news found in the category`;
     // display in the ui
     const contentContainer = document.getElementById('content-container');
     contentContainer.textContent = '';
     news.forEach(content => {
-        console.log(content)
+        // console.log(content)
         const {thumbnail_url,title,details} = content
-        //  const {img} = author
         const div = document.createElement('div')
 
         div.classList.add('col')
@@ -63,26 +66,28 @@ const displayAllNews = (news) => {
                 Read more!
                 </button>
             </div>
-            <div>
-                <span class="text-secondary"><i class="fa-regular fa-eye"></i> ${content.total_view ? content.total_view : "Found no data"} </span>
+                <div>
+                    <span class="text-secondary"><i class="fa-regular fa-eye"></i> ${content.total_view ? content.total_view : "Found no data"} </span>
+                </div>
+            </div>
             </div>
         </div>
-     </div>
-    </div>
-     `;
+      `;
         contentContainer.appendChild(div)
     })
     loading(false);
 }
+// api call by news to show details on modal
 const showModal = (id) => {
     const url = `https://openapi.programming-hero.com/api/news/${id}`
     fetch(url)
         .then(res => res.json())
         .then(data => insideModal(data.data))
+        .catch(error => console.log(error) )
 }
 showModal()
 const insideModal = (insideNews)=>{
-    console.log(insideNews)
+    // console.log(insideNews)
     const title = document.getElementById('exampleModalLabel')
     const modalBody = document.getElementById('body-modal');
     insideNews.forEach(news => {
@@ -100,4 +105,5 @@ const loading = (isLoading) => {
         loader.classList.add('d-none');
     }
 }
+// called this function for showing one fixed news
 showALLNews('01')
