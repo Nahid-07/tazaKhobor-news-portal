@@ -19,13 +19,14 @@ const displayMenu = (cate)=>{
     })
 }
 loadDataOnmenu()
+
 const showALLNews = (category_id)=>{
     const url =`https://openapi.programming-hero.com/api/news/category/${category_id}`
     fetch(url)
     .then(res => res.json())
     .then(data => displayAllNews(data.data))
 }
-showALLNews()
+// showALLNews()
 const displayAllNews = (news) =>{
     console.log(news);
     const contentContainer = document.getElementById('content-container');
@@ -42,9 +43,21 @@ const displayAllNews = (news) =>{
      <div class="card-body">
        <h5 class="card-title">${title}</h5>
        <p class="card-text">${details.length > 100 ? details.slice(0,100): details}</p>
+       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Read more!
+      </button>
      </div>
-   </div>
+    </div>
      `;
      contentContainer.appendChild(div)
     })
+}
+const showModal = (category_id)=>{
+    const url =`https://openapi.programming-hero.com/api/news/category/${category_id}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => show(data.data))
+}
+const show = (mit) =>{
+    console.log(mit)
 }
