@@ -21,6 +21,7 @@ const displayMenu = (cate)=>{
 loadDataOnmenu()
 
 const showALLNews = (category_id)=>{
+    loading(true)
     const url =`https://openapi.programming-hero.com/api/news/category/${category_id}`
     fetch(url)
     .then(res => res.json())
@@ -29,8 +30,9 @@ const showALLNews = (category_id)=>{
 // showALLNews()
 const displayAllNews = (news) =>{
     console.log(news);
+    
     const contentContainer = document.getElementById('content-container');
-    contentContainer.textContent =''
+    contentContainer.textContent ='';
     news.forEach(content => {
      console.log(content)
      const {thumbnail_url, title, details } = content
@@ -51,6 +53,7 @@ const displayAllNews = (news) =>{
      `;
      contentContainer.appendChild(div)
     })
+    loading(false);
 }
 const showModal = (category_id)=>{
     const url =`https://openapi.programming-hero.com/api/news/category/${category_id}`
@@ -58,6 +61,11 @@ const showModal = (category_id)=>{
     .then(res => res.json())
     .then(data => show(data.data))
 }
-const show = (mit) =>{
-    console.log(mit)
+const loading = (isLoading) => {
+    const loader = document.getElementById('loader')
+    if(isLoading){
+        loader.classList.remove('d-none');
+    }else{
+        loader.classList.add('d-none');
+    }
 }
