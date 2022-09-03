@@ -91,7 +91,7 @@ const insideModal = (insideNews)=>{
     const title = document.getElementById('exampleModalLabel')
     const modalBody = document.getElementById('body-modal');
     insideNews.forEach(news => {
-        modalBody.innerHTML=`<img src="${news.thumbnail_url }" alt="" width="100%"><p>${news.details}</p>`;
+        modalBody.innerHTML=`<img src="${news.thumbnail_url }" alt="" width="100%"><p>${news.details}</p><p><img src="${news.author.img}" class="rounded-circle" alt="..." width="75px" heigth="75px"><span class="mx-4">${news.author.name ? news.author.name : 'Found no Name'}</span> <span class="text-secondary"><i class="fa-regular fa-eye"></i> ${news.total_view ? news.total_view : "Found no data"} </span></p>`;
         title.innerText=`${news.title}`
     })
 }
