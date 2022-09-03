@@ -26,9 +26,7 @@ const showALLNews = (category_id) => {
         .then(res => res.json())
         .then(data => displayAllNews(data.data))
 }
-// showALLNews()
 const displayAllNews = (news) => {
-    console.log(news.length);
     // news sorting
     news.sort((a,b)=> b.total_view - a.total_view)
     // data found
@@ -42,6 +40,7 @@ const displayAllNews = (news) => {
         const {thumbnail_url,title,details} = content
         //  const {img} = author
         const div = document.createElement('div')
+
         div.classList.add('col')
         div.innerHTML = ` 
         <div class="card">
@@ -60,12 +59,12 @@ const displayAllNews = (news) => {
         </div>
         <div class="d-flex justify-content-between">
             <div>
-                <button type="button" onclick="showModal('${content._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" onclick="showModal('${content._id}')" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Read more!
                 </button>
             </div>
             <div>
-                <span>total view :${content.total_view ? content.total_view : "Found no data"} </span>
+                <span class="text-secondary"><i class="fa-regular fa-eye"></i> ${content.total_view ? content.total_view : "Found no data"} </span>
             </div>
         </div>
      </div>
@@ -101,3 +100,4 @@ const loading = (isLoading) => {
         loader.classList.add('d-none');
     }
 }
+showALLNews('01')
