@@ -28,17 +28,14 @@ const showALLNews = (category_id) => {
 }
 // showALLNews()
 const displayAllNews = (news) => {
-    console.log(news);
-
+    console.log(news.length);
+    const foundData = document.getElementById('found-data');
+    foundData.innerText =`${news.length} news found`
     const contentContainer = document.getElementById('content-container');
     contentContainer.textContent = '';
     news.forEach(content => {
         console.log(content)
-        const {
-            thumbnail_url,
-            title,
-            details
-        } = content
+        const {thumbnail_url,title,details} = content
         //  const {img} = author
         const div = document.createElement('div')
         div.classList.add('col')
@@ -53,8 +50,8 @@ const displayAllNews = (news) => {
                 <img src="${content.author.img}" class="rounded-circle" alt="..." width="75px" heigth="75px">
             </div>
             <div class="ms-2">
-                <p><span>Author name: ${content.author.name}</span></br>
-                <span>${content.author.published_date }</span></p>
+                <p><span>Author name: ${content.author.name ? content.author.name : 'Found no data'}</span></br>
+                <span>${content.author.published_date ? content.author.published_date : 'publish date not found' }</span></p>
             </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -64,7 +61,7 @@ const displayAllNews = (news) => {
                 </button>
             </div>
             <div>
-                <span>total view :${content.total_view} </span>
+                <span>total view :${content.total_view ? content.total_view : "Found no data"} </span>
             </div>
         </div>
      </div>
@@ -83,10 +80,11 @@ const showModal = (id) => {
 showModal()
 const insideModal = (insideNews)=>{
     console.log(insideNews)
+    const title = document.getElementById('exampleModalLabel')
     const modalBody = document.getElementById('body-modal');
     insideNews.forEach(news => {
-        modalBody.innerHTML=`<img src="${news.thumbnail_url }" alt="" width="100%"><p>${news.details
-        }</p>`
+        modalBody.innerHTML=`<img src="${news.thumbnail_url }" alt="" width="100%"><p>${news.details}</p>`;
+        title.innerText=`${news.title}`
     })
 }
 
