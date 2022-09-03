@@ -13,7 +13,7 @@ const displayMenu = (cate) => {
     cate.forEach(cates => {
         const li = document.createElement('li');
         li.classList.add('nav-item');
-        li.innerHTML = `<a onclick="showALLNews('${cates.category_id}')" class="nav-link" href="#">${cates.category_name}</a>`;
+        li.innerHTML = `<a onclick="showALLNews('${cates.category_id}')" class="fs-4 nav-link" href="#">${cates.category_name}</a>`;
         ul.appendChild(li)
     })
 }
@@ -29,8 +29,12 @@ const showALLNews = (category_id) => {
 // showALLNews()
 const displayAllNews = (news) => {
     console.log(news.length);
+    // news sorting
+    news.sort((a,b)=> b.total_view - a.total_view)
+    // data found
     const foundData = document.getElementById('found-data');
-    foundData.innerText =`${news.length} news found`
+    foundData.innerText =`${news.length} news found`;
+    // display in the ui
     const contentContainer = document.getElementById('content-container');
     contentContainer.textContent = '';
     news.forEach(content => {
@@ -44,7 +48,7 @@ const displayAllNews = (news) => {
         <img src="${thumbnail_url}" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title">${title}</h5>
-        <p class="card-text">${details.length > 100 ? details.slice(0,100): details}</p>
+        <p class="card-text">${details.length > 100 ? details.slice(0,100)+'...': details}</p>
         <div class="d-flex mb-2">
             <div>
                 <img src="${content.author.img}" class="rounded-circle" alt="..." width="75px" heigth="75px">

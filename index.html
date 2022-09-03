@@ -13,11 +13,11 @@
       <!-- navbar -->
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container">
-              <a class="navbar-brand" href="#">News <span class="text-danger fw-bold">Thread</span></a>
+              <a class="navbar-brand fs-3 text" href="#">Taza<span class="text-danger fw-bold">Khobor</span></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <div class="collapse navbar-collapse justify-content-end fs-3 text" id="navbarNav">
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a class="nav-link " aria-current="page" href="#">News</a>
@@ -39,7 +39,23 @@
     <!-- found data count -->
     <section class="container">
       <div id="found-data" class="alert alert-dark text-center" role="alert">
-        
+        <!-- added  -->
+      </div>
+    </section>
+    <!-- sort and trending -->
+    <section class="container">
+      <div class="d-flex justify-content-between">
+        <div class="w-25">
+          <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Select format</option>
+            <option value="1">Default</option>
+            <option value="2" selected>Sort</option>
+          </select>
+        </div>
+        <div>
+          <button type="button" class="btn btn-outline-primary">Todays Pick</button>
+          <button type="button" class="btn btn-outline-info">Trendings</button>
+        </div>
       </div>
     </section>
     <div id="loader" class="d-flex justify-content-center d-none">
